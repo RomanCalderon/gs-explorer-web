@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+# Gaussian Explorer - Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This experimental project explores the application of Gaussian splats in 3D content. Gaussian splats, a technique often used in computer graphics, are utilized in this project to create and manipulate 3D content in innovative ways.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The primary goal of this project is to push the boundaries of what's possible with Gaussian splats. It serves as a platform for demonstrating various techniques and algorithms to generate, render, and interact with 3D models using Gaussian splats.
 
-## Expanding the ESLint configuration
+While the current focus is on Gaussian splats, the project is designed with scalability in mind, aiming to add support for a Gaussian Explorer community in the future. This makes it not just a showcase, but also a sandbox for experimentation, innovation, and collaboration in 3D content creation.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- Exploration of 3D models using Gaussian splats
+- Interactive manipulation of 3D content
+- *More TBD*
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This project is still in the experimental stage, and I welcome contributions and suggestions. Feel free to fork the repository and submit pull requests.
