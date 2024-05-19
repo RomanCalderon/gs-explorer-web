@@ -1,0 +1,108 @@
+#root {
+  text-align: center;
+  margin: 0 auto;
+}
+
+body:before {
+  content: "";
+  background:
+    linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(16, 17, 20, 0),
+      rgba(16, 17, 20, 1)),
+    url(colorful-background.jpg) no-repeat 50% 0;
+  background-size: cover;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.title {
+  margin: 10vh 0 160px 0;
+  font-size: 6em;
+}
+
+.container {
+  margin: auto;
+  max-width: 900px;
+  padding: 1rem 1rem;
+  text-align: center;
+  background: rgba(16, 17, 20, 0.8);
+}
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 85vw;
+  }
+  .title {
+    margin: 5vh 0 100px 0;
+    font-size: 5em;
+  }
+}
+
+@media (max-width: 780px) {
+  .container {
+    max-width: 100vw;
+    padding: 5vw 0vw;
+  }
+  .title {
+    margin: 5vh 0 100px 0;
+    font-size: 4em;
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.iframe-container {
+  display: flex;
+  justify-content: center;
+}
+
+iframe {
+  aspect-ratio: 16 / 9;
+  width: 100% !important;
+}
+
+.caption {
+  margin-bottom: 40px;
+}
+
+.read-the-docs {
+  color: #888;
+}
