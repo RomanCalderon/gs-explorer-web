@@ -1,11 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { Posts } from "../components/Posts/Posts"
 import reactLogo from '/react.svg'
 import viteLogo from '/vite.svg'
 
 const Home = () => {
-    const navigate = useNavigate();
-
     return (
         <>
             <div className='title'>Gaussian Explorer</div>
@@ -35,9 +32,6 @@ const Home = () => {
                         ...and the same guitar rendered in Spline
                     </p>
                 </div>
-                <button onClick={() => navigate('/weather')}>
-                    Weather
-                </button>
                 <h2>Posts</h2>
                 <Posts showNav={true} />
                 <div>
