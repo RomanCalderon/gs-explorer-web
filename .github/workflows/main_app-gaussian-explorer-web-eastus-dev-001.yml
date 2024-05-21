@@ -67,5 +67,5 @@ jobs:
         with:
           app-name: 'app-gaussian-explorer-web-eastus-dev-001'
           slot-name: 'Production'
-          package: .
+          package: release.zip
           
