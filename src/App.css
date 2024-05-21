@@ -10,7 +10,7 @@ body:before {
       rgba(0, 0, 0, 0.7),
       rgba(16, 17, 20, 0),
       rgba(16, 17, 20, 1)),
-    url(colorful-background.jpg) no-repeat 50% 0;
+    url('assets/colorful-background.jpg') no-repeat 50% 0;
   background-size: cover;
   position: absolute;
   z-index: -1;
