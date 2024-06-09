@@ -68,12 +68,4 @@ jobs:
           app-name: 'app-gaussian-explorer-web-eastus-dev-001'
           slot-name: 'Production'
           package: release.zip
-
-      - name: 'Deploy to Azure Web App - West US 2 Dev 001'
-        id: deploy-to-webapp-westus2-dev-001
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'app-gaussian-explorer-web-westus2-dev-001'
-          slot-name: 'Production'
-          package: release.zip
           
