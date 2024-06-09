@@ -31,6 +31,17 @@ const Home = () => {
                     <p className='caption'>
                         ...and the same guitar rendered in Spline
                     </p>
+                    <div className='iframe-container'>
+                        <iframe
+                            src='https://my.spline.design/untitled-81b577be40f2cc6e9576e5c777abb77d/'
+                            frameBorder='0'
+                            width='100%'
+                            height='100%'>
+                        </iframe>
+                    </div>
+                    <p className='caption'>
+                        EXONAUT
+                    </p>
                 </div>
                 <h2>Posts</h2>
                 <Posts showNav={true} />
