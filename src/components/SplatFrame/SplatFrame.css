@@ -1,0 +1,21 @@
+.splat-frame-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 2.8em 2.8em 2.8em 2.8em;
+}
+
+iframe {
+  aspect-ratio: 4 / 3;
+  width: 100% !important;
+}
+
+.caption {
+  margin-bottom: 120px;
+  font-size: 1.2em;
+}
+
+.card {
+  padding: 2em;
+}

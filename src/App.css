@@ -31,6 +31,7 @@ body:before {
   padding: 1rem 1rem;
   text-align: center;
   background: rgba(16, 17, 20, 0.8);
+  border-radius: 5em 5em 0 0;
 }
 
 @media (max-width: 1024px) {
@@ -87,21 +88,6 @@ body:before {
 
 .card {
   padding: 2em;
-}
-
-.iframe-container {
-  display: flex;
-  justify-content: center;
-}
-
-iframe {
-  aspect-ratio: 16 / 9;
-  width: 100% !important;
-}
-
-.caption {
-  margin-bottom: 120px;
-  font-size: 1.2em;
 }
 
 .read-the-docs {
