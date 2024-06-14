@@ -10,6 +10,10 @@ const Home = () => {
             <div className='title'>Gaussian Explorer</div>
             <div className='container'>
                 <div className="card">
+                    <SplatFrame
+                        src='https://my.spline.design/untitled-aebf5628e1fef1c7bd394b57e024a521/'
+                        caption="Garden Flowers"
+                    />
                     <SplatFrame src='https://my.spline.design/untitled-81b577be40f2cc6e9576e5c777abb77d/'
                         caption="EXONAUT"
                     />
@@ -20,10 +24,6 @@ const Home = () => {
                     <SplatFrame
                         src='https://my.spline.design/jimny-0b583ed2786e02ca03b8dff3375c3b3d/'
                         caption="Jimny"
-                    />
-                    <SplatFrame
-                        src='https://my.spline.design/m235-d304ac282d6154c797f4c4409e9781cd/'
-                        caption="M235"
                     />
                     <SplatFrame
                         src='https://my.spline.design/untitled-ef3f680ca35f73545cc859d1d0d241bb/'
