@@ -11,12 +11,19 @@ const Home = () => {
             <div 
                 style={{
                     zIndex: -1,
-                    position: 'fixed',
+                    position: 'absolute',
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: `url(${backgroundImg})`,
+                    background: 
+                        `linear-gradient(to bottom,
+                            rgba(0, 0, 0, 0.7),
+                            rgba(16, 17, 20, 0),
+                            rgba(16, 17, 20, 0),
+                            rgba(16, 17, 20, 1.5)),
+                        url(${backgroundImg})
+                        no-repeat 50% 0`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}
