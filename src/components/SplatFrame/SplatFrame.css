@@ -1,9 +1,10 @@
 .splat-frame-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  border-radius: 2.8em 2.8em 2.8em 2.8em;
+  border-radius: 2.8em;
 }
 
 iframe {
@@ -12,7 +13,7 @@ iframe {
 }
 
 .caption {
-  margin-bottom: 120px;
+  margin-bottom: 60px;
   font-size: 1.2em;
 }
 

@@ -2,13 +2,11 @@ import IFrame from '../components/IFrame/IFrame'
 import { Posts } from '../components/Posts/Posts'
 import SplatFrame from '../components/SplatFrame/SplatFrame'
 import backgroundImg from '/colorful-background.webp'
-import reactLogo from '/react.svg'
-import viteLogo from '/vite.svg'
 
 const Home = () => {
     return (
         <>
-            <div 
+            <div
                 style={{
                     zIndex: -1,
                     position: 'absolute',
@@ -16,7 +14,7 @@ const Home = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: 
+                    background:
                         `linear-gradient(to bottom,
                             rgba(0, 0, 0, 0.7),
                             rgba(16, 17, 20, 0),
@@ -29,12 +27,29 @@ const Home = () => {
                 }}
             />
             <div className='title'>Gaussian Explorer</div>
+
             <div className='container'>
-                <div className="card">
+                <div className="card" style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    padding: '1em',
+                    margin: '2em',
+                }}>
                     <SplatFrame
                         src='https://my.spline.design/untitled-aebf5628e1fef1c7bd394b57e024a521/'
                         caption="Garden Flowers"
                     />
+                    <div className='subtitle'>
+                        This experimental project explores the application
+                        of Gaussian splats in 3D content.
+                        <br /><br />
+                        Gaussian splats, a technique often used in computer graphics,
+                        are utilized in this project to create, showcase and
+                        manipulate 3D content in innovative ways.
+                    </div>
+                </div>
+                <div className="card">
                     <SplatFrame src='https://my.spline.design/untitled-81b577be40f2cc6e9576e5c777abb77d/'
                         caption="EXONAUT"
                     />
@@ -58,15 +73,7 @@ const Home = () => {
                 </div>
                 <h2>Posts</h2>
                 <Posts showNav={true} />
-                <div>
-                    <a href="https://vitejs.dev" target="_blank">
-                        <img src={viteLogo} className="logo" alt="Vite logo" />
-                    </a>
-                    <a href="https://react.dev" target="_blank">
-                        <img src={reactLogo} className="logo react" alt="React logo" />
-                    </a>
-                </div>
-            </div>
+            </div >
         </>
     )
 }
