@@ -1,12 +1,28 @@
-import IFrame from "../components/IFrame/IFrame"
-import { Posts } from "../components/Posts/Posts"
-import SplatFrame from "../components/SplatFrame/SplatFrame"
+import IFrame from '../components/IFrame/IFrame'
+import { Posts } from '../components/Posts/Posts'
+import SplatFrame from '../components/SplatFrame/SplatFrame'
+import backgroundImg from '/colorful-background.jpg'
 import reactLogo from '/react.svg'
 import viteLogo from '/vite.svg'
+
+import '../App.css'
 
 const Home = () => {
     return (
         <>
+            <div
+                className="background-img"
+                style={{
+                    background: `linear-gradient(to bottom,
+                        rgba(0, 0, 0, 0.7),
+                        rgba(16, 17, 20, 0),
+                        rgba(16, 17, 20, 1)),
+                      url(${backgroundImg})
+                      no-repeat 50% 0`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+            />
             <div className='title'>Gaussian Explorer</div>
             <div className='container'>
                 <div className="card">
