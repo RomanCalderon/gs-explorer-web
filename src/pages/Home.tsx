@@ -5,14 +5,17 @@ import backgroundImg from '/colorful-background.jpg'
 import reactLogo from '/react.svg'
 import viteLogo from '/vite.svg'
 
-import '../App.css'
-
 const Home = () => {
     return (
         <>
             <div
-                className="background-img"
                 style={{
+                    zIndex: -1,
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
                     background: `linear-gradient(to bottom,
                         rgba(0, 0, 0, 0.7),
                         rgba(16, 17, 20, 0),
