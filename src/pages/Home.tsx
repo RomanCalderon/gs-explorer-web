@@ -1,13 +1,9 @@
 import IFrame from '../components/IFrame/IFrame'
 import { Posts } from '../components/Posts/Posts'
 import SplatFrame from '../components/SplatFrame/SplatFrame'
-// import backgroundImg from '/colorful-background.jpg'
-// import reactLogo from '/react.svg'
-// import viteLogo from '/vite.svg'
-
-const backgroundImg = '/colorful-background.jpg'
-const reactLogo = '/react.svg'
-const viteLogo = '/vite.svg'
+import backgroundImg from '/colorful-background.webp'
+import reactLogo from '/react.svg'
+import viteLogo from '/vite.svg'
 
 const Home = () => {
     return (
