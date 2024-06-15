@@ -4,9 +4,19 @@
 }
 
 .title {
-  margin: 10vh 0 160px 0;
+  margin: 5vh 0 60px 0;
   font-size: 6em;
   text-shadow: 0 0 1em #000;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  font-weight: 400;
+  color: #fff;
+  margin: 1em 5%;
+  padding: 1.5em;
+  background-color: #050505f3;
+  border-radius: 2em;
 }
 
 .container {
@@ -32,10 +42,14 @@
   .container {
     max-width: 100vw;
     padding: 5vw 0vw;
+    border-radius: 4em 4em 0 0;
   }
   .title {
     margin: 5vh 0 100px 0;
     font-size: 4em;
+  }
+  .subtitle {
+    margin-top: 0em;
   }
 }
 
