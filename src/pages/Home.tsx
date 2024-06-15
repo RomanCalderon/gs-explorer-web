@@ -8,7 +8,7 @@ import viteLogo from '/vite.svg'
 const Home = () => {
     return (
         <>
-            <div
+            <div 
                 style={{
                     zIndex: -1,
                     position: 'fixed',
@@ -16,12 +16,7 @@ const Home = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: `linear-gradient(to bottom,
-                        rgba(0, 0, 0, 0.7),
-                        rgba(16, 17, 20, 0),
-                        rgba(16, 17, 20, 1)),
-                      url(${backgroundImg})
-                      no-repeat 50% 0`,
+                    backgroundImage: `url(${backgroundImg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                 }}

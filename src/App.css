@@ -3,25 +3,10 @@
   margin: 0 auto;
 }
 
-.background-img {
-  content: "";
-  background:
-    linear-gradient(to bottom,
-      rgba(0, 0, 0, 0.7),
-      rgba(16, 17, 20, 0),
-      rgba(16, 17, 20, 1)),
-    no-repeat 50% 0;
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
 .title {
   margin: 10vh 0 160px 0;
   font-size: 6em;
+  text-shadow: 0 0 1em #000;
 }
 
 .container {
