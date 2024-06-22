@@ -1,6 +1,7 @@
 import IFrame from '../components/IFrame/IFrame'
 import { Posts } from '../components/Posts/Posts'
 import SplatFrame from '../components/SplatFrame/SplatFrame'
+
 import backgroundImg from '/colorful-background.webp'
 
 const Home = () => {

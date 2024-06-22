@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+
 import { PostType, Post } from '../Post/Post';
+
 import './Posts.css';
 
 interface PostsProps {
@@ -12,16 +14,16 @@ export const Posts = ({ showNav }: PostsProps) => {
   const perPage: number = 10;
   const maxPages: number = 10;
 
-  const getPosts = async () => {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_per_page=${perPage}`);
-    const postsJson = await response.json();
-    setPosts(postsJson);
-  };
-
-  const nextPage = () => setPage(page + 1);
-  const prevPage = () => setPage(page - 1);
+  const nextPage = () => setPage(Math.min(page + 1, maxPages));
+  const prevPage = () => setPage(Math.max(page - 1, 1));
 
   useEffect(() => {
+    const getPosts = async () => {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_per_page=${perPage}`);
+      const postsJson = await response.json();
+      setPosts(postsJson);
+    };
+
     getPosts();
   }, [page]);
 
