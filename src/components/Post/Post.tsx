@@ -1,13 +1,17 @@
 import './Post.css';
 
-export interface PostType {
+export interface PostCollection {
+  posts: Post[] | undefined;
+}
+
+export interface Post {
   id: number;
   title: string;
   body: string;
   userId: number;
 }
 
-export const Post = (post: PostType) => {
+export const Post = (post: Post) => {
   if (!post) return <p>Loading...</p>;
   return (
     <div className='post'>
