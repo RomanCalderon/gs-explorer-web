@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
-import { PostType, Post } from '../Post/Post';
-
+import usePaginatedPosts from '../../hooks/usePaginatedPosts';
+import { Post } from '../Post/Post';
 import './Posts.css';
 
 interface PostsProps {
@@ -9,23 +9,14 @@ interface PostsProps {
 }
 
 export const Posts = ({ showNav }: PostsProps) => {
-  const [posts, setPosts] = useState<PostType[]>([]);
-  const [page, setPage] = useState(1);
-  const perPage: number = 10;
+  const pageSize: number = 10;
   const maxPages: number = 10;
 
+  const [page, setPage] = useState(1);
+  const [posts] = usePaginatedPosts(page, pageSize);
+  
   const nextPage = () => setPage(Math.min(page + 1, maxPages));
   const prevPage = () => setPage(Math.max(page - 1, 1));
-
-  useEffect(() => {
-    const getPosts = async () => {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=${page}&_per_page=${perPage}`);
-      const postsJson = await response.json();
-      setPosts(postsJson);
-    };
-
-    getPosts();
-  }, [page]);
 
   const postsNav = (
     <div className='posts-nav'>
@@ -39,11 +30,13 @@ export const Posts = ({ showNav }: PostsProps) => {
     </div>
   );
 
+  if (!posts) return <p>Loading...</p>;
+
   return (
     <div>
       {showNav && postsNav}
       <div className='posts'>
-        {posts.map((post) => (
+        {posts?.map((post) => (
           <Post key={post.id} {...post} />
         ))}
       </div>
