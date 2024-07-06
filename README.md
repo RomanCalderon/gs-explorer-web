@@ -2,6 +2,8 @@
 
 This experimental project explores the application of Gaussian splats in 3D content. Gaussian splats, a technique often used in computer graphics, are utilized in this project to create and manipulate 3D content in innovative ways.
 
+![Beer cans by the pool](.github/docs/beer-cans.gif)
+
 ## Project Overview
 
 The primary goal of this project is to push the boundaries of what's possible with Gaussian splats. It serves as a platform for demonstrating various techniques and algorithms to generate, render, and interact with 3D models using Gaussian splats.
