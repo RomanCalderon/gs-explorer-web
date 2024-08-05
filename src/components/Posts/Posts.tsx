@@ -1,20 +1,25 @@
 import { useState } from 'react';
 
-import usePaginatedPosts from '../../hooks/usePaginatedPosts';
 import { Post } from '../Post/Post';
 import './Posts.css';
+import { useQuery } from '@tanstack/react-query';
 
 interface PostsProps {
   showNav: boolean;
 }
 
 export const Posts = ({ showNav }: PostsProps) => {
+  const [page, setPage] = useState(1);
   const pageSize: number = 10;
   const maxPages: number = 10;
 
-  const [page, setPage] = useState(1);
-  const [posts] = usePaginatedPosts(page, pageSize);
-  
+  const { data: posts, isLoading, isError, error } = useQuery<Post[]>({
+    queryKey: [`posts/v1?page=${page}&pageSize=${pageSize}`],
+  });
+
+  if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Error: {error?.message}</p>;
+
   const nextPage = () => setPage(Math.min(page + 1, maxPages));
   const prevPage = () => setPage(Math.max(page - 1, 1));
 
@@ -29,8 +34,6 @@ export const Posts = ({ showNav }: PostsProps) => {
       </button>
     </div>
   );
-
-  if (!posts) return <p>Loading...</p>;
 
   return (
     <div>
