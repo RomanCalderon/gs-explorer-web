@@ -1,9 +1,5 @@
 import './Post.css';
 
-export interface PostCollection {
-  posts: Post[] | undefined;
-}
-
 export interface Post {
   id: number;
   title: string;

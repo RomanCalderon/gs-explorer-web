@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import { PostCollection } from '../components/Post/Post';
+import { Post } from '../components/Post/Post';
 
 function usePaginatedPosts(page: number, pageSize: number) {
-    const [posts, setPosts] = useState<PostCollection>();
+    const [posts, setPosts] = useState<Post[]>([]);
 
     useEffect(() => {
         let baseAddress = import.meta.env.VITE_API_URL;
@@ -18,7 +18,7 @@ function usePaginatedPosts(page: number, pageSize: number) {
         getPosts();
     }, [page, pageSize]);
 
-    return [posts?.posts];
+    return [posts];
 }
 
 export default usePaginatedPosts;
