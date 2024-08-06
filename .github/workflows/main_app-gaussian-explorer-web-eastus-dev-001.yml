@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - app-gaussian-explorer-web-
 on:
   push:
     branches:
-      - main
+      - development
   workflow_dispatch:
 
 jobs:
@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: development
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
