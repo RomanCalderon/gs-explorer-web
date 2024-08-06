@@ -1,8 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 import { Post } from '../Post/Post';
+
 import './Posts.css';
-import { useQuery } from '@tanstack/react-query';
 
 interface PostsProps {
   showNav: boolean;
