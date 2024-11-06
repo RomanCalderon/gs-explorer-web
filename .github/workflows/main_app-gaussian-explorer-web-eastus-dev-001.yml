@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - app-gaussian-explorer-web-
 on:
   push:
     branches:
-      - main
+      - development
   workflow_dispatch:
 
 jobs:
@@ -15,6 +15,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: development
 
       - name: Set up Node.js version
         uses: actions/setup-node@v3
@@ -33,7 +35,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
-          name: node-app
+          name: app-gaussian-explorer-web-eastus-dev-001
           path: release.zip
 
   deploy:
@@ -49,13 +51,13 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: node-app
+          name: app-gaussian-explorer-web-eastus-dev-001
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
       
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_60FF1A1ED4BC4F5EB5F5A147C4A83C22 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_21487904256845C7885E092920A106BD }}
@@ -63,7 +65,7 @@ jobs:
 
       - name: 'Deploy to Azure Web App - East US Dev 001'
         id: deploy-to-webapp-eastus-dev-001
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: 'app-gaussian-explorer-web-eastus-dev-001'
           slot-name: 'Production'
