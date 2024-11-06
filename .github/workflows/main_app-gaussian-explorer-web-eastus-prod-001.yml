@@ -50,6 +50,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-gaussian-explorer-web-eastus-prod-001
+          path: release.zip
           
       - name: Print working directory
         run: pwd
@@ -58,8 +59,8 @@ jobs:
         run: ls -la
   
       - name: Unzip artifact for deployment
-        run: unzip release.zip
-  
+        run: unzip release.zip -d .
+
       - name: List files after unzipping
         run: ls -la
   
@@ -80,4 +81,3 @@ jobs:
           app-name: 'app-gaussian-explorer-web-eastus-prod-001'
           slot-name: 'Production'
           package: .
-          
