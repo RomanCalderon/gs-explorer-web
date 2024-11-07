@@ -59,7 +59,7 @@ jobs:
         run: ls -la
   
       - name: Unzip artifact for deployment
-        run: unzip release.zip -d .
+        run: unzip release.zip
 
       - name: List files after unzipping
         run: ls -la
