@@ -51,19 +51,10 @@ jobs:
         with:
           name: app-gaussian-explorer-web-eastus-prod-001
           path: .
-          
-      - name: Print working directory
-        run: pwd
-  
-      - name: List files before unzipping
-        run: ls -la
-  
+
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
-      - name: List files after unzipping
-        run: ls -la
-  
+        
       - name: Remove zip file after unzipping
         run: rm release.zip
       

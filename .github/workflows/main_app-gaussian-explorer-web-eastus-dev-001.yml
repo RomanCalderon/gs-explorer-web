@@ -30,7 +30,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./dist/* -r
+        run: zip -r release.zip dist
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -52,9 +52,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: app-gaussian-explorer-web-eastus-dev-001
+          path: .
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
+        
+      - name: Remove zip file after unzipping
+        run: rm release.zip
       
       - name: Login to Azure
         uses: azure/login@v2
