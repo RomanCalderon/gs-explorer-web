@@ -24,8 +24,6 @@
   max-width: 1400px;
   padding: 1rem 1rem;
   text-align: center;
-  background: rgba(16, 17, 20, 0.8);
-  border-radius: 5em 5em 0 0;
 }
 
 @media (max-width: 1024px) {
@@ -82,10 +80,6 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.card {
-  padding: 2em;
 }
 
 .read-the-docs {

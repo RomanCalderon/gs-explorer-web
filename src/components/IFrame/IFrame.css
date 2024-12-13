@@ -7,10 +7,11 @@
 iframe {
     aspect-ratio: 16 / 9;
     width: 100% !important;
+    border-radius: 1rem;
 }
 
 .caption {
-  margin-bottom: 120px;
+  margin-bottom: 20px;
   font-size: 1.2em;
 }
 
