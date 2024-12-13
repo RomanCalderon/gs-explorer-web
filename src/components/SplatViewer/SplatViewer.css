@@ -3,6 +3,11 @@
   position: relative;
   max-height: 100vh;
   border-radius: 1rem;
+  cursor: grab;
+}
+
+.splat-viewer:active {
+  cursor: grabbing;
 }
 
 canvas {
