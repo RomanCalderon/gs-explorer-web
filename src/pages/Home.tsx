@@ -67,13 +67,6 @@ const Home = () => {
                     I want to share how Gaussian splatting can be used to create,
                     showcase and manipulate context from our world in innovative ways.
                 </div>
-                <Card>
-                    <IFrame
-                        src="https://www.youtube.com/embed/tkU6TRtD1tY"
-                        title="Spanish Romance - Classical Guitar Gaussian Splat Render"
-                        caption="...and the same guitar rendered in Unity"
-                    />
-                </Card>
                 <h2>Posts</h2>
                 <Posts showNav={true} />
             </div >
