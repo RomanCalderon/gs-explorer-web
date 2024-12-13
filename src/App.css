@@ -9,21 +9,22 @@
   text-shadow: 0 0 1em #000;
 }
 
+.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1400px;
+  text-align: center;
+}
+
 .subtitle {
   font-size: 1.2em;
   font-weight: 400;
   color: #fff;
-  margin: 1em 5%;
   padding: 1.5em;
   background-color: #050505f3;
   border-radius: 2em;
-}
-
-.container {
-  margin: auto;
-  max-width: 1400px;
-  padding: 1rem 1rem;
-  text-align: center;
 }
 
 @media (max-width: 1024px) {
@@ -51,21 +52,6 @@
   }
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
@@ -80,8 +66,4 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
-
-.read-the-docs {
-  color: #888;
 }
