@@ -1,10 +1,32 @@
+import { useState } from 'react'
+
+import { Card } from '../components/Card/Card';
 import IFrame from '../components/IFrame/IFrame'
 import { Posts } from '../components/Posts/Posts'
-import SplatFrame from '../components/SplatFrame/SplatFrame'
+import SplatViewer, { CameraSettings } from '../components/SplatViewer/SplatViewer';
 
 import backgroundImg from '/colorful-background.webp'
 
+const defaultCameraSettings: CameraSettings = {
+    near: 2,
+    far: 50,
+};
+interface Splat {
+    id: string;
+    name: string;
+    url: string;
+}
+const splats: Splat[] = [
+    { id: 'bikes_3', name: 'Bikes', url: 'postshot/bikes/bikes_3.splat' },
+    { id: 'ford-gt', name: 'Ford GT', url: 'postshot/ford-gt/ford-gt.splat' },
+    { id: 'm235', name: 'M235i', url: 'postshot/m235/m235.splat' },
+    { id: 'flowers1', name: 'Flowers', url: 'postshot/flowers1/flowers1.splat' },
+    { id: 'guitar-1', name: 'Classic Acoustic Guitar', url: 'postshot/guitar-1/guitar-1.splat' },
+];
+
 const Home = () => {
+    const [currentSplat, setCurrentSplat] = useState<Splat>(splats[0]);
+
     return (
         <>
             <div
@@ -30,48 +52,28 @@ const Home = () => {
             <div className='title'>Gaussian Explorer</div>
 
             <div className='container'>
-                <div className="card" style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    padding: '1em',
-                    margin: '2em',
-                }}>
-                    <SplatFrame
-                        src='https://my.spline.design/untitled-aebf5628e1fef1c7bd394b57e024a521/'
-                        caption="Garden Flowers"
-                    />
-                    <div className='subtitle'>
-                        This experimental project explores the application
-                        of Gaussian splats in 3D content.
-                        <br /><br />
-                        Gaussian splats, a technique often used in computer graphics,
-                        are utilized in this project to create, showcase and
-                        manipulate 3D content in innovative ways.
-                    </div>
+                <Card>
+                    <SplatViewer
+                        url={`https://huggingface.co/datasets/roman-apollo/3dgs/resolve/main/${currentSplat.url}`}
+                        cameraSettings={defaultCameraSettings} />
+                    {splats.map((splat) => (
+                        <button key={splat.id} onClick={() => setCurrentSplat(splat)}>{splat.name}</button>
+                    ))}
+                </Card>
+                <div className='subtitle'>
+                    This experimental project explores the application
+                    of 3D content through Gaussian splatting.
+                    <br /><br />
+                    I want to share how Gaussian splatting can be used to create,
+                    showcase and manipulate context from our world in innovative ways.
                 </div>
-                <div className="card">
-                    <SplatFrame src='https://my.spline.design/untitled-81b577be40f2cc6e9576e5c777abb77d/'
-                        caption="EXONAUT"
-                    />
-                    <SplatFrame
-                        src='https://my.spline.design/untitled-6c032f1ebd91fc756fc1cc95f1f03815/'
-                        caption="Bikes"
-                    />
-                    <SplatFrame
-                        src='https://my.spline.design/jimny-0b583ed2786e02ca03b8dff3375c3b3d/'
-                        caption="Jimny"
-                    />
-                    <SplatFrame
-                        src='https://my.spline.design/untitled-ef3f680ca35f73545cc859d1d0d241bb/'
-                        caption="3D gaussian splat of my classical guitar rendered in Spline"
-                    />
+                <Card>
                     <IFrame
                         src="https://www.youtube.com/embed/tkU6TRtD1tY"
                         title="Spanish Romance - Classical Guitar Gaussian Splat Render"
                         caption="...and the same guitar rendered in Unity"
                     />
-                </div>
+                </Card>
                 <h2>Posts</h2>
                 <Posts showNav={true} />
             </div >
