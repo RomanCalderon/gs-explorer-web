@@ -1,8 +1,7 @@
 import { useState } from 'react'
 
 import { Card } from '../components/Card/Card';
-import IFrame from '../components/IFrame/IFrame'
-import { Posts } from '../components/Posts/Posts'
+import { Posts } from '../components/Posts/Posts';
 import SplatViewer, { CameraSettings } from '../components/SplatViewer/SplatViewer';
 
 import backgroundImg from '/colorful-background.webp'
