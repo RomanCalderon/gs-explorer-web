@@ -27,6 +27,37 @@
   border-radius: 2em;
 }
 
+select {
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(204, 204, 204, 0.3);
+  background-color: rgba(16, 17, 20, 0.8);
+  color: #fff;
+  width: 100%;
+  max-width: 400px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+select:hover {
+  background-color: rgba(16, 17, 20, 0.9);
+  border-color: rgba(204, 204, 204, 0.5);
+}
+
+select:focus {
+  outline: none;
+  border-color: rgba(204, 204, 204, 0.7);
+  box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.2);
+}
+
+option {
+  background-color: rgb(16, 17, 20);
+  color: #fff;
+  padding: 12px;
+}
+
+
 @media (max-width: 1024px) {
   .container {
     max-width: 85vw;

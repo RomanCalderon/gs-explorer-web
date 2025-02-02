@@ -43,10 +43,6 @@ const Home = () => {
             <div className='title'>Gaussian Explorer</div>
 
             <div className='container'>
-                {isLoading && <p>Loading splat...</p>}
-                {isError && <p>Splat error: {error?.message}</p>}
-                {currentSplat && <SplatCard splat={currentSplat} />}
-
                 <div style={{ marginTop: '20px', marginBottom: '20px' }}>
                     <label htmlFor='splat-select'>Select a splat: </label>
                     <select
@@ -63,6 +59,10 @@ const Home = () => {
                         ))}
                     </select>
                 </div>
+
+                {isLoading && <p>Loading splat...</p>}
+                {isError && <p>Splat error: {error?.message}</p>}
+                {currentSplat && <SplatCard splat={currentSplat} />}
 
                 <div className='subtitle'>
                     This experimental project explores the application
