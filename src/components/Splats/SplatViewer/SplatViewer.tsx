@@ -3,11 +3,6 @@ import * as SPLAT from 'gsplat';
 
 import './SplatViewer.css';
 
-const scene = new SPLAT.Scene();
-let camera = new SPLAT.Camera();
-let renderer: SPLAT.WebGLRenderer;
-let controls: SPLAT.OrbitControls;
-
 export interface CameraSettings {
   near: number;
   far: number;
@@ -22,6 +17,10 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
   const viewerRef = useRef<HTMLDivElement>(null);
   const rendererRef = useRef<SPLAT.WebGLRenderer | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sceneRef = useRef<SPLAT.Scene>(new SPLAT.Scene());
+  const cameraRef = useRef<SPLAT.Camera>(new SPLAT.Camera());
+  const controlsRef = useRef<SPLAT.OrbitControls | null>(null);
+  const animationFrameRef = useRef<number>();
   const [progress, setProgress] = useState(0);
 
   if (!url) return <div className='invalid-url'>Invalid URL</div>
@@ -32,42 +31,58 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
     const resizeObserver = new ResizeObserver(handleResize);
     resizeObserver.observe(viewerRef.current);
 
-    if (rendererRef.current) {
-      rendererRef.current.dispose();
-    }
-    scene.reset();
+    cleanup();
 
+    // Initialize new scene and camera
     if (cameraSettings) {
       const cameraData = new SPLAT.CameraData();
       cameraData.near = cameraSettings.near ?? 0.1;
       cameraData.far = cameraSettings.far ?? 1000;
-      camera = new SPLAT.Camera(cameraData);
+      cameraRef.current = new SPLAT.Camera(cameraData);
     }
 
     renderViewer(url);
 
     return () => {
-      resizeObserver.disconnect();
-      if (rendererRef.current) {
-        rendererRef.current.dispose();
+      cleanup();
+      if (viewerRef.current) {
+        resizeObserver.unobserve(viewerRef.current);
       }
-      scene.reset();
+      resizeObserver.disconnect();
     };
   }, [url, cameraSettings]);
 
+  const cleanup = () => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+    }
+    if (rendererRef.current) {
+      rendererRef.current.dispose();
+      rendererRef.current = null;
+    }
+    if (controlsRef.current) {
+      controlsRef.current = null;
+    }
+    sceneRef.current.reset();
+  };
+
   async function renderViewer(url: string) {
-    await SPLAT.Loader.LoadAsync(url, scene, (progress) => setProgress(progress));
-    renderer = new SPLAT.WebGLRenderer(canvasRef.current);
-    controls = new SPLAT.OrbitControls(camera, renderer.canvas);
-    rendererRef.current = renderer;
+    await SPLAT.Loader.LoadAsync(url, sceneRef.current, (progress) => setProgress(progress));
+    
+    if (!canvasRef.current) return;
+    
+    rendererRef.current = new SPLAT.WebGLRenderer(canvasRef.current);
+    controlsRef.current = new SPLAT.OrbitControls(cameraRef.current, rendererRef.current.canvas);
 
     const frame = () => {
-      controls.update();
-      renderer.render(scene, camera);
-      requestAnimationFrame(frame);
+      if (!controlsRef.current || !rendererRef.current) return;
+      
+      controlsRef.current.update();
+      rendererRef.current.render(sceneRef.current, cameraRef.current);
+      animationFrameRef.current = requestAnimationFrame(frame);
     };
 
-    requestAnimationFrame(frame);
+    animationFrameRef.current = requestAnimationFrame(frame);
   }
 
   const handleResize = () => {
@@ -76,7 +91,7 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
     const height = viewerRef.current.clientHeight;
     rendererRef.current?.setSize(width, height);
     rendererRef.current?.resize();
-    camera.update();
+    cameraRef.current.update();
   };
 
   return (
