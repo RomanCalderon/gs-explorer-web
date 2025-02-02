@@ -1,30 +1,22 @@
-import { useState } from 'react'
-
-import { Card } from '../components/Card/Card';
+import { useEffect, useState } from 'react';
 import { Posts } from '../components/Posts/Posts';
-import SplatViewer, { CameraSettings } from '../components/SplatViewer/SplatViewer';
+import SplatCard from '../components/Splats/SplatCard/SplatCard';
+import { Splat } from '../types/splats';
 
 import backgroundImg from '/colorful-background.webp'
-
-const defaultCameraSettings: CameraSettings = {
-    near: 2,
-    far: 50,
-};
-interface Splat {
-    id: string;
-    name: string;
-    url: string;
-}
-const splats: Splat[] = [
-    { id: 'bikes_3', name: 'Bikes', url: 'postshot/bikes/bikes_3.splat' },
-    { id: 'ford-gt', name: 'Ford GT', url: 'postshot/ford-gt/ford-gt.splat' },
-    { id: 'm235', name: 'M235i', url: 'postshot/m235/m235.splat' },
-    { id: 'flowers1', name: 'Flowers', url: 'postshot/flowers1/flowers1.splat' },
-    { id: 'guitar-1', name: 'Classic Acoustic Guitar', url: 'postshot/guitar-1/guitar-1.splat' },
-];
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-    const [currentSplat, setCurrentSplat] = useState<Splat>(splats[0]);
+    const { data: splats, isLoading, isError, error } = useQuery<Splat[]>({
+        queryKey: ['splats/user/647/v1'],
+    });
+    const [currentSplat, setCurrentSplat] = useState<Splat | null>(null);
+
+    useEffect(() => {
+        if (splats && splats.length > 0) {
+            setCurrentSplat(splats[0]);
+        }
+    }, [splats]);
 
     return (
         <>
@@ -51,14 +43,27 @@ const Home = () => {
             <div className='title'>Gaussian Explorer</div>
 
             <div className='container'>
-                <Card>
-                    <SplatViewer
-                        url={`https://huggingface.co/datasets/roman-apollo/3dgs/resolve/main/${currentSplat.url}`}
-                        cameraSettings={defaultCameraSettings} />
-                    {splats.map((splat) => (
-                        <button key={splat.id} onClick={() => setCurrentSplat(splat)}>{splat.name}</button>
-                    ))}
-                </Card>
+                {isLoading && <p>Loading splat...</p>}
+                {isError && <p>Splat error: {error?.message}</p>}
+                {currentSplat && <SplatCard splat={currentSplat} />}
+
+                <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                    <label htmlFor='splat-select'>Select a splat: </label>
+                    <select
+                        value={currentSplat?.id || ''}
+                        onChange={(e) => {
+                            const selected = splats?.find(splat => splat.id == e.target.value);
+                            if (selected) setCurrentSplat(selected);
+                        }}
+                    >
+                        {splats?.map(splat => (
+                            <option key={splat.id} value={splat.id}>
+                                {splat.title}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+
                 <div className='subtitle'>
                     This experimental project explores the application
                     of 3D content through Gaussian splatting.
