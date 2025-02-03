@@ -21,6 +21,7 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
   const cameraRef = useRef<SPLAT.Camera>(new SPLAT.Camera());
   const controlsRef = useRef<SPLAT.OrbitControls | null>(null);
   const animationFrameRef = useRef<number>();
+  const resizeTimeoutRef = useRef<number | null>(null);
   const [progress, setProgress] = useState(0);
 
   if (!url) return <div className='invalid-url'>Invalid URL</div>
@@ -72,6 +73,7 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
     if (!canvasRef.current) return;
     
     rendererRef.current = new SPLAT.WebGLRenderer(canvasRef.current);
+    rendererRef.current.setSize(canvasRef.current.clientWidth, canvasRef.current.clientHeight);
     controlsRef.current = new SPLAT.OrbitControls(cameraRef.current, rendererRef.current.canvas);
 
     const frame = () => {
@@ -86,12 +88,17 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
   }
 
   const handleResize = () => {
-    if (!viewerRef.current) return;
-    const width = viewerRef.current.clientWidth;
-    const height = viewerRef.current.clientHeight;
-    rendererRef.current?.setSize(width, height);
-    rendererRef.current?.resize();
-    cameraRef.current.update();
+    if (resizeTimeoutRef.current) {
+      clearTimeout(resizeTimeoutRef.current);
+    }
+    resizeTimeoutRef.current = setTimeout(() => {
+      if (!viewerRef.current) return;
+      const width = viewerRef.current.offsetWidth;
+      const height = 800;
+      rendererRef.current?.setSize(width, height);
+      rendererRef.current?.resize();
+      cameraRef.current.update();
+    }, 100);
   };
 
   return (
