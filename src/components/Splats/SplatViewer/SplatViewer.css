@@ -1,7 +1,8 @@
 .splat-viewer {
   overflow: hidden;
   position: relative;
-  max-height: 100vh;
+  height: 800px;
+  max-height: 90vh;
   border-radius: 1rem;
   cursor: grab;
 }
