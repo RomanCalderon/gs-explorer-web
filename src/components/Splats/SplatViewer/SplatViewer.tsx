@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import * as SPLAT from 'gsplat';
+import SplatLoader from '../SplatLoader/SplatLoader';
 
 import './SplatViewer.css';
 
@@ -69,16 +70,16 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
 
   async function renderViewer(url: string) {
     await SPLAT.Loader.LoadAsync(url, sceneRef.current, (progress) => setProgress(progress));
-    
+
     if (!canvasRef.current) return;
-    
+
     rendererRef.current = new SPLAT.WebGLRenderer(canvasRef.current);
     rendererRef.current.setSize(canvasRef.current.clientWidth, canvasRef.current.clientHeight);
     controlsRef.current = new SPLAT.OrbitControls(cameraRef.current, rendererRef.current.canvas);
 
     const frame = () => {
       if (!controlsRef.current || !rendererRef.current) return;
-      
+
       controlsRef.current.update();
       rendererRef.current.render(sceneRef.current, cameraRef.current);
       animationFrameRef.current = requestAnimationFrame(frame);
@@ -104,15 +105,13 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
   return (
     <div className="splat-viewer" ref={viewerRef}>
       {progress < 1 && (
-        <div className="splat-loader">
-          {`Loading: ${(progress * 100).toFixed(2)}%`}
-        </div>
-      )}
-      <canvas
-        id="canvas"
-        ref={canvasRef}
-        style={{ width: '100%', height: '100%' }}
-      />
+        <SplatLoader
+          progress={progress}
+          radius={50}
+          strokeWidth={10}
+          color="#E74C3C"
+        />)}
+      <canvas id="canvas" ref={canvasRef} />
     </div>
   );
 };
