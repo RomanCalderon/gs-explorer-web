@@ -9,6 +9,11 @@ export interface CameraSettings {
   far: number;
 }
 
+export const DEFAULT_CAMERA_SETTINGS: CameraSettings = {
+  near: 2,
+  far: 50
+} as const;
+
 interface SplatViewerProps {
   url: string | null;
   cameraSettings: CameraSettings | undefined;
