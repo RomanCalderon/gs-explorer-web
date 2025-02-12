@@ -1,17 +1,16 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import BackgroundFog from '../components/Backgrounds/BackgroundFog';
 import { Posts } from '../components/Posts/Posts';
 import SplatCard from '../components/Splats/SplatCard/SplatCard';
 import { Splat } from '../types/splats';
-
-import backgroundImg from '/colorful-background.webp'
-import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
     const { data: splats, isLoading, isError, error } = useQuery<Splat[]>({
         queryKey: ['splats/user/647/v1'],
     });
     const [currentSplat, setCurrentSplat] = useState<Splat | null>(null);
-
+    
     useEffect(() => {
         if (splats && splats.length > 0) {
             setCurrentSplat(splats[0]);
@@ -20,26 +19,7 @@ const Home = () => {
 
     return (
         <>
-            <div
-                style={{
-                    zIndex: -1,
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    background:
-                        `linear-gradient(to bottom,
-                            rgba(0, 0, 0, 0.7),
-                            rgba(16, 17, 20, 0),
-                            rgba(16, 17, 20, 0),
-                            rgba(16, 17, 20, 1.5)),
-                        url(${backgroundImg})
-                        no-repeat 50% 0`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-            />
+            <BackgroundFog highlightColor='#ff00ff' midtoneColor='#00ffff' lowlightColor='#7fff00' baseColor='#000000' />
             <div className='title'>Gaussian Explorer</div>
 
             <div className='container'>
