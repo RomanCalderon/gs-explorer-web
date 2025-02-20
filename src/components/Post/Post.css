@@ -11,11 +11,15 @@
     gap: var(--spacing-base);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
+    min-height: 200px;
+    max-height: min(300px, 80vh);
+    height: fit-content;
 }
 
 .post:hover {
     transform: translateY(2px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
 }
 
 .post::before {
@@ -52,6 +56,13 @@
     line-height: 1.6;
     margin: 0;
     flex-grow: 1;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 16;
+    line-clamp: 16;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    max-height: 400px;
 }
 
 .post-footer {
@@ -60,7 +71,7 @@
     padding-top: var(--spacing-base);
     border-top: 1px solid var(--color-border);
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
     opacity: 0.8;
 }

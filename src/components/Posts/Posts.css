@@ -7,7 +7,7 @@
 .posts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--spacing-large);
+  gap: var(--spacing-base);
   margin: var(--spacing-large) 0;
 }
 
@@ -41,7 +41,7 @@
 
 .posts-nav button:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: unset;
 }
 
 .page-number {
