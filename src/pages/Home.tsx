@@ -50,8 +50,10 @@ const Home = () => {
                     I want to share how Gaussian splatting can be used to create,
                     showcase and manipulate context from our world in innovative ways.
                 </div>
-                <h2>Posts</h2>
-                <Posts showNav={true} />
+                <div className='content-section'>
+                    <h2 className='section-title'>Latest Posts</h2>
+                    <Posts showNav={true} />
+                </div>
             </div >
         </>
     )

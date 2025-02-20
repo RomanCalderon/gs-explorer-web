@@ -3,6 +3,7 @@ import axios from 'axios'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import './App.css'
+import './styles/theme.css'
 import Home from './pages/Home'
 import Layout from './pages/Layout'
 
@@ -21,17 +22,15 @@ const queryClient = new QueryClient({
 
 function App() {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Layout />}>
-              <Route path='/' element={<Home />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route path='/' element={<Home />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
   )
 }
 

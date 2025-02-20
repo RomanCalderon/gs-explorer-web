@@ -13,7 +13,9 @@ export const Post = (post: Post) => {
     <div className='post'>
       <h2>{post.title}</h2>
       <p>{post.body}</p>
-      <div className='read-the-docs'>{post.id}</div>
+      <div className='post-footer'>
+        User ID: {post.userId}
+      </div>
     </div>
   );
 };
