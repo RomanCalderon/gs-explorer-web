@@ -1,14 +1,12 @@
 .posts-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: var(--spacing-large);
 }
 
 .posts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--spacing-base);
-  margin: var(--spacing-large) 0;
 }
 
 .posts-nav {
@@ -62,7 +60,7 @@
   .posts-container {
     padding: var(--spacing-base);
   }
-  
+
   .posts {
     grid-template-columns: 1fr;
   }

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState, useEffect, useRef } from 'react';
 
 import { Post } from '../Post/Post';
@@ -15,7 +15,7 @@ export const Posts = ({ showNav }: PostsProps) => {
   const maxPages: number = 10;
   const postsRef = useRef<HTMLDivElement>(null);
 
-  const { data: posts, isLoading, isError, error } = useQuery<Post[]>({
+  const { data: posts, isError, error } = useSuspenseQuery<Post[]>({
     queryKey: [`posts/v1?page=${page}&pageSize=${pageSize}`],
   });
 
@@ -35,9 +35,9 @@ export const Posts = ({ showNav }: PostsProps) => {
     };
 
     resizeGridItems();
-    
+
     const timeoutId = setTimeout(resizeGridItems, 100);
-    
+
     window.addEventListener('resize', resizeGridItems);
 
     return () => {
@@ -46,7 +46,6 @@ export const Posts = ({ showNav }: PostsProps) => {
     };
   }, [posts]);
 
-  if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error?.message}</p>;
 
   const nextPage = () => setPage(Math.min(page + 1, maxPages));

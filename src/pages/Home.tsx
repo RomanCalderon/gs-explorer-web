@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import BackgroundFog from '../components/Backgrounds/BackgroundFog';
 import { Posts } from '../components/Posts/Posts';
+import { PostsSkeleton } from '../components/Posts/PostsSkeleton';
 import SplatCard from '../components/Splats/SplatCard/SplatCard';
 import { Splat } from '../types/splats';
 
@@ -52,7 +53,9 @@ const Home = () => {
                 </div>
                 <div className='content-section'>
                     <h2 className='section-title'>Latest Posts</h2>
-                    <Posts showNav={true} />
+                    <Suspense fallback={<PostsSkeleton count={16}/>}>
+                        <Posts showNav={true} />
+                    </Suspense>
                 </div>
             </div >
         </>
