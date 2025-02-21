@@ -53,8 +53,8 @@ const Home = () => {
                 </div>
                 <div className='content-section'>
                     <h2 className='section-title'>Latest Posts</h2>
-                    <Suspense fallback={<PostsSkeleton count={16}/>}>
-                        <Posts showNav={true} />
+                    <Suspense fallback={<PostsSkeleton count={12} />}>
+                        <Posts showNav={true} pageSize={12} maxPages={10} />
                     </Suspense>
                 </div>
             </div >

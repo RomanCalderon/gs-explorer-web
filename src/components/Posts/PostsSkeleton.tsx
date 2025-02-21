@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import './Posts.css';
 import '../Post/Post.css';
 import { PostSkeleton } from '../Post/PostSkeleton';
@@ -7,8 +8,38 @@ interface PostsSkeletonProps {
 }
 
 export const PostsSkeleton = ({ count }: PostsSkeletonProps) => {
-  const postsNav = (
-    <div className='posts-nav'>
+  const postsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!postsRef.current) return;
+
+    const resizeGridItems = () => {
+      const grid = postsRef.current;
+      if (!grid) return;
+
+      const items = grid.getElementsByClassName('post');
+      for (let i = 0; i < items.length; i++) {
+        const rowHeight = 20;
+        const rowSpan = Math.ceil(items[i].getBoundingClientRect().height / rowHeight);
+        (items[i] as HTMLElement).style.gridRowEnd = `span ${rowSpan}`;
+      }
+    };
+
+    resizeGridItems();
+
+    const timeoutId = setTimeout(resizeGridItems, 100);
+
+    window.addEventListener('resize', resizeGridItems);
+
+    return () => {
+      window.removeEventListener('resize', resizeGridItems);
+      clearTimeout(timeoutId);
+    };
+  }, [count]);
+
+  return (
+    <>
+      <div className='posts-nav'>
       <button disabled>
         Prev
       </button>
@@ -17,17 +48,11 @@ export const PostsSkeleton = ({ count }: PostsSkeletonProps) => {
         Next
       </button>
     </div>
-  );
-
-  return (
-    <>
-      {postsNav}
-      <div className='posts'>
+      <div className='posts' ref={postsRef}>
         {[...Array(count)].map((_, i) => (
-          <PostSkeleton key={i} />
+          <PostSkeleton key={i} minHeight={100} maxHeight={200} />
         ))}
       </div>
-      {postsNav}
     </>
   );
 };

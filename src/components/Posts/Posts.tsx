@@ -7,12 +7,12 @@ import './Posts.css';
 
 interface PostsProps {
   showNav: boolean;
+  pageSize: number;
+  maxPages: number;
 }
 
-export const Posts = ({ showNav }: PostsProps) => {
+export const Posts = ({ showNav, pageSize, maxPages }: PostsProps) => {
   const [page, setPage] = useState(1);
-  const pageSize: number = 10;
-  const maxPages: number = 10;
   const postsRef = useRef<HTMLDivElement>(null);
 
   const { data: posts, isError, error } = useSuspenseQuery<Post[]>({
@@ -71,7 +71,6 @@ export const Posts = ({ showNav }: PostsProps) => {
           <Post key={post.id} {...post} />
         ))}
       </div>
-      {showNav && postsNav}
     </div>
   );
 };
