@@ -2,6 +2,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { useState, useEffect, useRef } from 'react';
 
 import { Post } from '../Post/Post';
+import { Pagination } from '../Pagination/Pagination';
 
 import './Posts.css';
 
@@ -46,31 +47,21 @@ export const Posts = ({ showNav, pageSize, maxPages }: PostsProps) => {
     };
   }, [posts]);
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+    postsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   if (isError) return <p>Error: {error?.message}</p>;
 
-  const nextPage = () => setPage(Math.min(page + 1, maxPages));
-  const prevPage = () => setPage(Math.max(page - 1, 1));
-
-  const postsNav = (
-    <div className='posts-nav'>
-      <button onClick={prevPage} disabled={page === 1}>
-        Prev
-      </button>
-      <span className="page-number">{page}</span>
-      <button onClick={nextPage} disabled={page >= maxPages}>
-        Next
-      </button>
-    </div>
-  );
-
   return (
-    <div className="posts-container">
-      {showNav && postsNav}
+    <div className="posts-container"> 
       <div className='posts' ref={postsRef}>
         {posts?.map((post) => (
           <Post key={post.id} {...post} />
         ))}
       </div>
+      {showNav && <Pagination currentPage={page} maxPages={maxPages} onPageChange={handlePageChange} />}
     </div>
   );
 };
