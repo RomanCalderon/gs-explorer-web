@@ -35,6 +35,13 @@
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
 }
 
+.section-title {
+  font-size: var(--font-size-xlarge);
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: var(--spacing-large);
+}
+
 .footer-content {
   display: flex;
   justify-content: space-between;

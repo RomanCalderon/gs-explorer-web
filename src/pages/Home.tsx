@@ -52,7 +52,7 @@ const Home = () => {
                         showcase and manipulate context from our world in innovative ways.
                     </div>
                     <div className='content-section'>
-                        <h2 className='section-title'>Latest Posts</h2>
+                        <h2 className='section-title'>Posts</h2>
                         <Suspense fallback={<PostsSkeleton count={12} />}>
                             <Posts showNav={true} pageSize={12} maxPages={10} />
                         </Suspense>

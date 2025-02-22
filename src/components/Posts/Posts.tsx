@@ -55,7 +55,7 @@ export const Posts = ({ showNav, pageSize, maxPages }: PostsProps) => {
   if (isError) return <p>Error: {error?.message}</p>;
 
   return (
-    <div className="posts-container"> 
+    <div className="posts-container">
       <div className='posts' ref={postsRef}>
         {posts?.map((post) => (
           <Post key={post.id} {...post} />
