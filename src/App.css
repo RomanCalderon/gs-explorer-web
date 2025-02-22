@@ -35,6 +35,13 @@
   box-shadow: 0 0 32px rgba(0, 0, 0, 0.2);
 }
 
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-base);
+}
+
 select {
   padding: 8px 12px;
   font-size: 16px;
