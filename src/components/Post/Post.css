@@ -77,22 +77,18 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  padding-top: var(--spacing-base);
   opacity: 0.8;
 }
 
 .user-id {
   color: var(--color-text-secondary);
   font-size: var(--font-size-small);
-  padding-top: var(--spacing-base);
+  padding-bottom: var(--spacing-base);
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   opacity: 0.8;
-}
-
-.user-id::before {
-  content: "👤";
-  margin-right: var(--spacing-small);
 }
 
 .time-ago {

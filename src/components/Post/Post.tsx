@@ -28,11 +28,9 @@ export const Post = (post: Post) => {
   return (
     <div className='post'>
       <h2>{post.title}</h2>
+      <div className='user-id'>User {post.userId}</div>
       <p>{post.summary}</p>
       <div className='post-footer'>
-        <div className='user-id'>
-          User {post.userId}
-        </div>
         <div id='time-ago' className='time-ago' title={formattedDate}>{timeAgo}</div>
       </div>
     </div>
