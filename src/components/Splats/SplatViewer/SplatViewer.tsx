@@ -28,6 +28,7 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
   const controlsRef = useRef<SPLAT.OrbitControls | null>(null);
   const animationFrameRef = useRef<number>();
   const resizeTimeoutRef = useRef<number | null>(null);
+  const lastLoadedUrlRef = useRef<string | null>(null);
   const [progress, setProgress] = useState(0);
 
   if (!url) return <div className='invalid-url'>Invalid URL</div>
@@ -71,9 +72,16 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
       controlsRef.current = null;
     }
     sceneRef.current.reset();
+    setProgress(0);
   };
 
   async function renderViewer(url: string) {
+    if (url === lastLoadedUrlRef.current) {
+      console.log('Skipping duplicate load for URL:', url);
+      return;
+    }
+    
+    lastLoadedUrlRef.current = url;
     await SPLAT.Loader.LoadAsync(url, sceneRef.current, (progress) => setProgress(progress));
 
     if (!canvasRef.current) return;
