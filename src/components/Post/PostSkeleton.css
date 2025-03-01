@@ -1,0 +1,38 @@
+.skeleton {
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-base);
+  animation: pulse 1.5s infinite;
+  filter: opacity(0.8);
+}
+
+.skeleton-title {
+  height: 24px;
+  background: #e0e0e0;
+  margin-bottom: 12px;
+  width: 80%;
+}
+
+.skeleton-body {
+  height: 60px;
+  background: #e0e0e0;
+  margin-bottom: 12px;
+}
+
+.skeleton-footer {
+  height: 16px;
+  background: #e0e0e0;
+  width: 40%;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

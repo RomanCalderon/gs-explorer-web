@@ -1,15 +1,100 @@
 .post {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    margin-bottom: 60px;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #596d6a;
-    box-shadow: 8px 6px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-large);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-speed);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-base);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  min-height: 160px;
+  max-height: min(300px, 80vh);
+  height: fit-content;
+}
+
+.post:hover {
+  transform: translateY(2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+}
+
+/* Gradient overlay */
+.post::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  background: linear-gradient(
+    to right,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+  transition: height var(--transition-speed);
+  transition: transform var(--transition-speed);
+}
+
+.post:hover::before {
+  opacity: 1;
+  height: 6px;
 }
 
 .post h2 {
-    margin: 0;
-    color: #fff;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-large);
+  line-height: 1.3;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+}
+
+.post p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 16;
+  line-clamp: 16;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  max-height: 400px;
+}
+
+.post-footer {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-top: var(--spacing-base);
+  opacity: 0.8;
+}
+
+.user-id {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  padding-bottom: var(--spacing-base);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.8;
+}
+
+.time-ago {
+  opacity: 0.8;
+}
+
+.time-ago:hover {
+  opacity: 1;
 }
