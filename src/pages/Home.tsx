@@ -64,11 +64,9 @@ const Home = () => {
                 <div className='footer-content'>
                     <span>
                         <a href="https://github.com/RomanCalderon/gs-explorer-web" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text-primary)', textDecoration: 'underline', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            
-                            GitHub
+                            <img src="/github-mark-white.svg" alt="GitHub" style={{ width: '24px', height: '24px' }} />
                         </a>
                     </span>
-                    <span>By <a href="https://romancalderon.com" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-text-primary)', textDecoration: 'underline' }}>Roman Calderon</a></span>
                 </div>
             </footer>
         </>
