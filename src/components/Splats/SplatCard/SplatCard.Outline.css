@@ -1,0 +1,38 @@
+.splat-card.outline {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  min-width: unset;
+  max-width: unset;
+  max-height: unset;
+
+  background-color: var(--color-background-secondary);
+  border: none;
+  border-radius: unset;
+}
+
+.splat-card.outline .splat-title {
+  color: var(--color-text-primary);
+}
+
+.splat-card.outline .splat-description {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+/* Viewer styling */
+
+.splat-card.outline .splat-viewer {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}

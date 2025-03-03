@@ -26,7 +26,7 @@ const Home = () => {
                 <div className='container'>
                     {isLoading && <p>Loading splat...</p>}
                     {isError && <p>Splat error: {error?.message}</p>}
-                    {currentSplat && <SplatCard splat={currentSplat} />}
+                    {currentSplat && <SplatCard splat={currentSplat} styleMode='normal' />}
                     <div style={{ marginTop: '20px', marginBottom: '20px' }}>
                         <label htmlFor='splat-select'>Select a splat: </label>
                         <select
