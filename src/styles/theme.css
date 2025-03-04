@@ -2,7 +2,7 @@
   --color-primary: #4a90e2;
   --color-secondary: #50e3c2;
   --color-text-primary: #ffffff;
-  --color-text-secondary: #666666;
+  --color-text-secondary: #252525;
   --color-background: #ffffff;
   --color-background-secondary: #181A1C;
   --color-border: #e0e0e0;
@@ -20,6 +20,11 @@
   --border-radius: 8px;
 
   --transition-speed: 0.2s;
+
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1920px;
+  --breakpoint-xl: 2560px;
 }
 
 .dark-theme {

@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import BackgroundFog from '../components/Backgrounds/BackgroundFog';
 import { Posts } from '../components/Posts/Posts';
@@ -10,13 +10,6 @@ const Home = () => {
     const { data: splats, isLoading, isError, error } = useQuery<Splat[]>({
         queryKey: ['splats/user/647/v1'],
     });
-    const [currentSplat, setCurrentSplat] = useState<Splat | null>(null);
-
-    useEffect(() => {
-        if (splats && splats.length > 0) {
-            setCurrentSplat(splats[0]);
-        }
-    }, [splats]);
 
     return (
         <>
@@ -26,24 +19,7 @@ const Home = () => {
                 <div className='container'>
                     {isLoading && <p>Loading splat...</p>}
                     {isError && <p>Splat error: {error?.message}</p>}
-                    {currentSplat && <SplatCard splat={currentSplat} />}
-                    <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-                        <label htmlFor='splat-select'>Select a splat: </label>
-                        <select
-                            value={currentSplat?.id || ''}
-                            onChange={(e) => {
-                                const selected = splats?.find(splat => splat.id == e.target.value);
-                                if (selected) setCurrentSplat(selected);
-                            }}
-                        >
-                            {splats?.map(splat => (
-                                <option key={splat.id} value={splat.id}>
-                                    {splat.title}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-
+                    <SplatCard splats={splats || []} styleMode='normal' />
                     <div className='subtitle'>
                         This experimental project explores the application
                         of 3D content through Gaussian splatting.
