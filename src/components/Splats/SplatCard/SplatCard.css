@@ -38,19 +38,73 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.splat-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--color-text-secondary);
   text-align: center;
 }
 
-.splat-description {
+@media (max-width: 768px) {
+  .splat-card-content-wrapper {
+    flex-direction: column;
+    align-items: end;
+  }
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  max-width: fit-content;
+  padding: var(--spacing-small) var(--spacing-xlarge);
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23252525' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+select:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(var(--color-primary, 74, 144, 226), 0.3);
+  background-color: rgba(var(--color-primary, 74, 144, 226), 0.05);
+}
+
+select option {
   font-size: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+  padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  select {
+    padding: var(--spacing-small);
+    font-size: var(--font-size-base);
+    background-size: 0.8rem;
+  }
+}
+
+.splat-description {
+  font-size: var(--font-size-small);
   font-weight: normal;
-  color: #333;
+  color: var(--color-text-secondary);
 }
 
 .splat-card-controls {
@@ -99,13 +153,8 @@
 
 @media (max-width: 768px) {
   .splat-card-header {
-    padding-block: var(--spacing-small);
-    justify-content: start;
-  }
-
-  .splat-title {
-    font-size: 1.2rem;
     text-align: left;
+    justify-content: start;
   }
 
   .splat-description {
