@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { Splat } from '../../../types/splats';
 import SplatViewer, { DEFAULT_CAMERA_SETTINGS } from '../SplatViewer/SplatViewer';
-import { useState } from 'react';
 
 import './SplatCard.css'
 import './SplatCard.Outline.css'

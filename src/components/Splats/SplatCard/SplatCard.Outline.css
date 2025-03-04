@@ -8,7 +8,10 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 1rem;
+
+  padding: unset;
 
   min-width: unset;
   max-width: unset;
@@ -17,6 +20,14 @@
   background-color: var(--color-background-secondary);
   border: none;
   border-radius: unset;
+}
+
+.splat-card.outline .splat-card-content-wrapper {
+  z-index: 2;
+  padding: 1rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: color-mix(in srgb, var(--color-background-secondary), transparent 90%);
 }
 
 .splat-card.outline .splat-title {
@@ -32,7 +43,15 @@
 /* Viewer styling */
 
 .splat-card.outline .splat-viewer {
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
   z-index: 1;
+  overflow: visible;
+}
+
+.splat-card.outline .splat-viewer canvas {
+  height: 100vh !important;
 }
