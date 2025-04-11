@@ -12,15 +12,25 @@ const Home = () => {
         queryKey: ['splats/user/647/v1'],
     });
 
+    const showcaseSplats = () => {
+        if (isLoading) {
+            return <p>Loading splat...</p>
+        }
+        if (isError) {
+            return <p>Splat error: {error?.message}</p>
+        }
+        return <SplatCard splats={splats || []} styleMode='normal' />
+    }
+
     return (
         <>
             <BackgroundFog highlightColor='#ff00ff' midtoneColor='#00ffff' lowlightColor='#7fff00' baseColor='#000000' />
             <div className='title'>Gaussian Explorer</div>
             <section>
                 <div className='container'>
-                    {isLoading && <p>Loading splat...</p>}
-                    {isError && <p>Splat error: {error?.message}</p>}
-                    <SplatCard splats={splats || []} styleMode='normal' />
+                    <ErrorBoundary>
+                        {showcaseSplats()}
+                    </ErrorBoundary>
                     <div className='subtitle'>
                         This experimental project explores the application
                         of 3D content through Gaussian splatting.
