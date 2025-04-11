@@ -5,6 +5,7 @@ import { Posts } from '../components/Posts/Posts';
 import { PostsSkeleton } from '../components/Posts/PostsSkeleton';
 import SplatCard from '../components/Splats/SplatCard/SplatCard';
 import { Splat } from '../types/splats';
+import { ErrorBoundary } from '../components/ErrorBoundary/ErrorBoundary';
 
 const Home = () => {
     const { data: splats, isLoading, isError, error } = useQuery<Splat[]>({
@@ -29,9 +30,11 @@ const Home = () => {
                     </div>
                     <div className='content-section'>
                         <h2 className='section-title'>Posts</h2>
-                        <Suspense fallback={<PostsSkeleton count={12} />}>
-                            <Posts showNav={true} pageSize={12} maxPages={10} />
-                        </Suspense>
+                        <ErrorBoundary >
+                            <Suspense fallback={<PostsSkeleton count={12} />}>
+                                <Posts showNav={true} pageSize={12} maxPages={10} />
+                            </Suspense>
+                        </ErrorBoundary>
                     </div>
                 </div >
             </section>
