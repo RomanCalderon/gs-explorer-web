@@ -5,11 +5,22 @@ import { Posts } from '../components/Posts/Posts';
 import { PostsSkeleton } from '../components/Posts/PostsSkeleton';
 import SplatCard from '../components/Splats/SplatCard/SplatCard';
 import { Splat } from '../types/splats';
+import { ErrorBoundary } from '../components/ErrorBoundary/ErrorBoundary';
 
 const Home = () => {
     const { data: splats, isLoading, isError, error } = useQuery<Splat[]>({
         queryKey: ['splats/user/647/v1'],
     });
+
+    const showcaseSplats = () => {
+        if (isLoading) {
+            return <p>Loading splat...</p>
+        }
+        if (isError) {
+            return <p>Splat error: {error?.message}</p>
+        }
+        return <SplatCard splats={splats || []} styleMode='normal' />
+    }
 
     return (
         <>
@@ -17,9 +28,9 @@ const Home = () => {
             <div className='title'>Gaussian Explorer</div>
             <section>
                 <div className='container'>
-                    {isLoading && <p>Loading splat...</p>}
-                    {isError && <p>Splat error: {error?.message}</p>}
-                    <SplatCard splats={splats || []} styleMode='normal' />
+                    <ErrorBoundary>
+                        {showcaseSplats()}
+                    </ErrorBoundary>
                     <div className='subtitle'>
                         This experimental project explores the application
                         of 3D content through Gaussian splatting.
@@ -29,9 +40,11 @@ const Home = () => {
                     </div>
                     <div className='content-section'>
                         <h2 className='section-title'>Posts</h2>
-                        <Suspense fallback={<PostsSkeleton count={12} />}>
-                            <Posts showNav={true} pageSize={12} maxPages={10} />
-                        </Suspense>
+                        <ErrorBoundary >
+                            <Suspense fallback={<PostsSkeleton count={12} />}>
+                                <Posts showNav={true} pageSize={12} maxPages={10} />
+                            </Suspense>
+                        </ErrorBoundary>
                     </div>
                 </div >
             </section>

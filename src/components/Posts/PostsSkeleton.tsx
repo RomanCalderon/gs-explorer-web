@@ -39,19 +39,19 @@ export const PostsSkeleton = ({ count }: PostsSkeletonProps) => {
 
   return (
     <>
-      <div className='posts-nav'>
-      <button disabled>
-        Prev
-      </button>
-      <span className="page-number">...</span>
-      <button disabled>
-        Next
-      </button>
-    </div>
       <div className='posts' ref={postsRef}>
         {[...Array(count)].map((_, i) => (
           <PostSkeleton key={i} minHeight={100} maxHeight={200} />
         ))}
+      </div>
+      <div className='posts-nav'>
+        <button disabled>
+          Prev
+        </button>
+        <span className="page-number">...</span>
+        <button disabled>
+          Next
+        </button>
       </div>
     </>
   );
