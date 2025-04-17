@@ -16,10 +16,24 @@ export default defineConfig({
   },
   build: {
     assetsDir: 'assets',
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      }
+    },
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html')
+      },
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom']
+        }
       }
     }
+  },
+  server: {
+    host: true,
   }
 })
