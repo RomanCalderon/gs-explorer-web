@@ -43,7 +43,7 @@ jobs:
     needs: build
     environment:
       name: 'Development'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp-eastus-dev-001.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
 
