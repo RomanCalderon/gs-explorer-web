@@ -43,7 +43,7 @@ jobs:
     needs: build
     environment:
       name: 'Development'
-      url: ${{ steps.deploy-to-webapp-eastus-dev-001.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
 
@@ -68,7 +68,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
 
       - name: 'Deploy to Azure Web App - East US Dev 001'
-        id: deploy-to-webapp-eastus-dev-001
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'app-gaussian-explorer-web-eastus-dev-001'
