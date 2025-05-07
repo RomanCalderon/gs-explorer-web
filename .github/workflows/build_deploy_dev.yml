@@ -72,6 +72,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'app-gaussian-explorer-web-eastus-dev-001'
-          slot-name: 'Production'
+          slot-name: 'Development'
           package: .
           
