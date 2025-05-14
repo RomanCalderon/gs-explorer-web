@@ -65,10 +65,10 @@ const BackgroundFog = ({
           right: 0,
           bottom: 0,
           overflow: 'hidden',
-          filter: 'blur(16px)',
+          filter: 'blur(32px)',
           opacity: 0.65,
-          maskImage:        'linear-gradient(to bottom, black 0%, transparent 40%)',
-          WebkitMaskImage:  'linear-gradient(to bottom, black 0%, transparent 40%)', // For Safari, IE support
+          maskImage:        'linear-gradient(to bottom, black 0%, transparent 90%)',
+          WebkitMaskImage:  'linear-gradient(to bottom, black 0%, transparent 90%)', // For Safari, IE support
         }}
       />
       <NoiseFilter />
