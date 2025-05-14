@@ -27,7 +27,7 @@ const SplatViewer = ({ url, cameraSettings }: SplatViewerProps) => {
   const cameraRef = useRef<SPLAT.Camera>(new SPLAT.Camera());
   const controlsRef = useRef<SPLAT.OrbitControls | null>(null);
   const animationFrameRef = useRef<number>();
-  const resizeTimeoutRef = useRef<number | null>(null);
+  const resizeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const lastLoadedUrlRef = useRef<string | null>(null);
   const [progress, setProgress] = useState(0);
 
