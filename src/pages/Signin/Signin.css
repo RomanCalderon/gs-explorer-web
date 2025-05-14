@@ -1,0 +1,119 @@
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.signin-form-container {
+  width: 90vw;
+  max-width: 500px;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.signin-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.signin-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.signin-form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: left;
+  color: #f9fafb;
+}
+
+.signin-form-input {
+  padding: 0.75rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #374151;
+  background-color: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.signin-form-input:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.signin-form-input-error {
+  border-color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.signin-form-input-error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.signin-error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.signin-submit-button {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.signin-submit-button:hover {
+  background-color: rgba(var(--color-primary-rgb), 0.8);
+  box-shadow: 0 4px 6px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.signin-submit-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.signin-footer {
+  margin-top: 2rem;
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.signin-text {
+  font-size: 0.875rem;
+}
+
+.signin-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.signin-link:hover {
+  color: rgba(var(--color-primary-rgb), 0.8);
+  text-decoration: underline;
+}

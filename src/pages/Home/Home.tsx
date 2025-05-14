@@ -1,11 +1,13 @@
 import { Suspense } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import BackgroundFog from '../components/Backgrounds/BackgroundFog';
-import { Posts } from '../components/Posts/Posts';
-import { PostsSkeleton } from '../components/Posts/PostsSkeleton';
-import SplatCard from '../components/Splats/SplatCard/SplatCard';
-import { Splat } from '../types/splats';
-import { ErrorBoundary } from '../components/ErrorBoundary/ErrorBoundary';
+import BackgroundFog from '../../components/Backgrounds/BackgroundFog';
+import { Posts } from '../../components/Posts/Posts';
+import { PostsSkeleton } from '../../components/Posts/PostsSkeleton';
+import SplatCard from '../../components/Splats/SplatCard/SplatCard';
+import { Splat } from '../../types/splats';
+import { ErrorBoundary } from '../../components/ErrorBoundary/ErrorBoundary';
+
+import './Home.css'
 
 const Home = () => {
     const { data: splats, isLoading, isError, error } = useQuery<Splat[]>({
