@@ -116,4 +116,24 @@
 .signup-link:hover {
   color: rgba(var(--color-primary-rgb), 0.8);
   text-decoration: underline;
-} 
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--color-primary);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+.loading-text {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}

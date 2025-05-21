@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import './Signup.css'
 import BackgroundFog from '../components/Backgrounds/BackgroundFog'
+import { UserAuth } from '../context/AuthContext';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,23 +13,14 @@ const Signup = () => {
   })
   const [errors, setErrors] = useState({
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    signup: ''
   })
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-
-    if (name === 'password' || name === 'confirmPassword') {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }))
-    }
-  }
+  const navigate = useNavigate();
+  const auth = UserAuth()!;
+  const { signUp } = auth;
 
   const validatePasswords = () => {
     const newErrors = { ...errors }
@@ -48,13 +40,56 @@ const Signup = () => {
     return isValid
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (validatePasswords()) {
-      // TODO: Implement signup logic
-      console.log('Form submitted:', formData)
+  const handleSignUp = async (e: React.FormEvent) => {
+    if (!validatePasswords()) {
+      console.log('Passwords do not match');
+      return;
     }
+
+    e.preventDefault();
+    setLoading(true);
+    const { email, password } = formData;
+    try {
+      const result = await signUp(email, password);
+      if (result.isErr()) {
+        console.warn(result.error);
+        setErrors(prev => ({
+          ...prev,
+          signup: result.error.message
+        }));
+      }
+      if (result.isOk()) {
+        navigate('/');
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+
+    if (name === 'password' || name === 'confirmPassword') {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }))
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <div className="loading-text">Signing up...</div>
+      </div>
+    )
   }
 
   return (
@@ -62,7 +97,7 @@ const Signup = () => {
       <BackgroundFog highlightColor='#ff00ff' midtoneColor='#00ffff' lowlightColor='#7fff00' baseColor='#000000' />
       <div className="signup-container">
         <div className="content-section signup-form-container">
-          <form onSubmit={handleSubmit} className="signup-form">
+          <form onSubmit={handleSignUp} className="signup-form">
             <h2 className="signup-title">Let's get started</h2>
 
             <div className="signup-form-group">
@@ -118,6 +153,7 @@ const Signup = () => {
             >
               Join for free
             </button>
+            {errors.signup && <span className="signup-error-message">{errors.signup}</span>}
           </form>
 
           <div className="signup-footer">
