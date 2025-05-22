@@ -34,10 +34,6 @@
   transition: color 0.2s ease;
 }
 
-.navbar-logo:hover {
-  color: #666;
-}
-
 .navbar-menu {
   display: flex;
   align-items: center;
