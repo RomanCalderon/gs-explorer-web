@@ -46,7 +46,7 @@
 }
 
 .navbar-link {
-  color: #ffffff;
+  color: var(--color-text-primary);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease;
@@ -69,7 +69,6 @@
 
 .navbar-email {
   color: #ffffff;
-  font-size: 0.9rem;
 }
 
 .hamburger {
