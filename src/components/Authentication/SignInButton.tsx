@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom'
+import './SignInButton.css'
 
 const SignInButton = () => {
   const navigate = useNavigate();
 
   return (
-    <button onClick={() => navigate('/signin')}>Sign in</button>
+    <button className='signin-button' onClick={() => navigate('/signin')}>Sign In</button>
   )
 }
 
