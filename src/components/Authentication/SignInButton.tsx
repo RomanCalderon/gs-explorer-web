@@ -1,11 +1,8 @@
-import { useNavigate } from 'react-router-dom'
-import './SignInButton.css'
+import { Link } from 'react-router-dom'
 
 const SignInButton = () => {
-  const navigate = useNavigate();
-
   return (
-    <button className='signin-button' onClick={() => navigate('/signin')}>Sign In</button>
+    <Link className='navbar-link' to='/signin'>Sign In</Link>
   )
 }
 

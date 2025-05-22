@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 
 const SignOutButton = () => {
@@ -10,9 +11,9 @@ const SignOutButton = () => {
 
   return (
     <div>
-      <button onClick={handleSignOut}>
+      <Link className='navbar-link' to='/' onClick={handleSignOut}>
         Sign Out
-      </button>
+      </Link>
     </div>
   )
 }
