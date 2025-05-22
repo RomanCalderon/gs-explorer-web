@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../../context/AuthContext';
 import SignInButton from '../Authentication/SignInButton';
+import SignUpButton from '../Authentication/SignUpButton';
 import SignOutButton from '../Authentication/SignOutButton';
 import './Navbar.css';
 
@@ -74,6 +75,7 @@ const Navbar = () => {
             ) : (
               <div className="navbar-user">
                 <SignInButton />
+                <SignUpButton />
               </div>
             )}
           </div>
