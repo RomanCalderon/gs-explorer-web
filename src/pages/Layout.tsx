@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import SignOutButton from "../components/Authentication/SignOutButton";
-import SignInButton from "../components/Authentication/SignInButton";
+import Navbar from "../components/Navbar/Navbar";
 
 const Layout = () => {
   const auth = UserAuth()!;
@@ -17,15 +16,10 @@ const Layout = () => {
 
   return (
     <>
-      {session ? (
-        <div>
-          <h1>Welcome, {session.user.email}</h1>
-          <SignOutButton />
-        </div>
-      ) : (
-        <SignInButton />
-      )}
-      <Outlet />
+      <Navbar />
+      <main style={{ marginTop: '70px', padding: '1rem' }}>
+        <Outlet />
+      </main>
     </>
   )
 };

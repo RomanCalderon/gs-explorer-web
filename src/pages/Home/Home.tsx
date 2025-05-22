@@ -27,7 +27,6 @@ const Home = () => {
     return (
         <>
             <BackgroundFog highlightColor='#ff00ff' midtoneColor='#00ffff' lowlightColor='#7fff00' baseColor='#000000' />
-            <div className='title'>Gaussian Explorer</div>
             <section>
                 <div className='container'>
                     <ErrorBoundary>
