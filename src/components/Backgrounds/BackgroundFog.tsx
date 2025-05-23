@@ -41,7 +41,7 @@ const BackgroundFog = ({
   }, [vantaEffect]);
 
   const NoiseFilter = () => (
-    <svg style={{ position: 'fixed' }}>
+    <svg style={{ position: 'fixed', pointerEvents: 'none' }}>
       <filter id="noiseFilter">
         <feTurbulence
           type="fractalNoise"

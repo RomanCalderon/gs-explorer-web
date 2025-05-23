@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
+
 import './Signin.css'
 import BackgroundFog from '../../components/Backgrounds/BackgroundFog'
 import { UserAuth } from '../../context/AuthContext';
@@ -63,6 +64,7 @@ const Signin = () => {
     <>
       <BackgroundFog highlightColor='#ff00ff' midtoneColor='#00ffff' lowlightColor='#7fff00' baseColor='#000000' />
       <div className="signin-container">
+        <Link to="/" className="title">Gaussian Explorer</Link>
         <div className="content-section signin-form-container">
           <form onSubmit={handleSignIn} className="signin-form">
             <h2 className="signin-title">Welcome back</h2>

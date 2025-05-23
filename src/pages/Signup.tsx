@@ -96,6 +96,7 @@ const Signup = () => {
     <>
       <BackgroundFog highlightColor='#ff00ff' midtoneColor='#00ffff' lowlightColor='#7fff00' baseColor='#000000' />
       <div className="signup-container">
+        <Link to="/" className="title">Gaussian Explorer</Link>
         <div className="content-section signup-form-container">
           <form onSubmit={handleSignUp} className="signup-form">
             <h2 className="signup-title">Let's get started</h2>
