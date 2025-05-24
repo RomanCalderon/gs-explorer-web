@@ -1,0 +1,13 @@
+button.signup-button {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+button.signup-button:hover {
+  background-color: var(--color-secondary);
+}

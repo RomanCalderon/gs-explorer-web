@@ -1,10 +1,13 @@
 :root {
   --color-primary: #4a90e2;
+  --color-primary-rgb: 74, 144, 226;
   --color-secondary: #50e3c2;
-  --color-text-primary: #ffffff;
+  --color-secondary-rgb: 80, 227, 194;
+  --color-text-primary: #e0e0e0;
   --color-text-secondary: #252525;
   --color-background: #ffffff;
-  --color-background-secondary: #181A1C;
+  --color-background-secondary: #181a1c;
+  --color-background-secondary-rgb: 24, 26, 28;
   --color-border: #e0e0e0;
 
   --font-size-small: 0.875rem;
