@@ -17,6 +17,7 @@ const Signup = () => {
     signup: ''
   })
   const [loading, setLoading] = useState(false);
+  const [showEmailVerification, setShowEmailVerification] = useState(false);
 
   const navigate = useNavigate();
   const auth = UserAuth()!;
@@ -53,10 +54,15 @@ const Signup = () => {
       const result = await signUp(email, password);
       if (result.isErr()) {
         console.warn(result.error);
-        setErrors(prev => ({
-          ...prev,
-          signup: result.error.message
-        }));
+
+        if (result.error.message === 'EMAIL_VERIFICATION_REQUIRED') {
+          setShowEmailVerification(true);
+        } else {
+          setErrors(prev => ({
+            ...prev,
+            signup: result.error.message
+          }));
+        }
       }
       if (result.isOk()) {
         navigate('/');
@@ -83,6 +89,28 @@ const Signup = () => {
     }
   }
 
+  const emailVerificationNotice = (email: string) => {
+    return (
+      <div className="email-verification-container">
+        <h2 className="signup-title">Check your email</h2>
+        <p className="email-verification-text">
+          We've sent a verification link to
+        </p>
+        <p className="email-verification-text email">
+          <strong>{email}</strong>
+        </p>
+        <p className="email-verification-text">
+          Please check your email and click the link to complete your account setup.
+        </p>
+        <div className="email-verification-actions">
+          <Link to="/signin" className="signup-link">
+            Already verified? Sign in
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <div className="loading-container">
@@ -98,73 +126,77 @@ const Signup = () => {
       <div className="signup-container">
         <Link to="/" className="title">Gaussian Explorer</Link>
         <div className="content-section signup-form-container">
-          <form onSubmit={handleSignUp} className="signup-form">
-            <h2 className="signup-title">Let's get started</h2>
+          {showEmailVerification ? emailVerificationNotice(formData.email) : (
+            <>
+              <form onSubmit={handleSignUp} className="signup-form">
+                <h2 className="signup-title">Let's get started</h2>
 
-            <div className="signup-form-group">
-              <label htmlFor="email" className="signup-form-label">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                className="signup-form-input"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
+                <div className="signup-form-group">
+                  <label htmlFor="email" className="signup-form-label">
+                    Email
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className="signup-form-input"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
 
-            <div className="signup-form-group">
-              <label htmlFor="password" className="signup-form-label">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className={`signup-form-input ${errors.password ? 'signup-form-input-error' : ''}`}
-                value={formData.password}
-                onChange={handleChange}
-              />
-              {errors.password && <span className="signup-error-message">{errors.password}</span>}
-            </div>
+                <div className="signup-form-group">
+                  <label htmlFor="password" className="signup-form-label">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                    className={`signup-form-input ${errors.password ? 'signup-form-input-error' : ''}`}
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  {errors.password && <span className="signup-error-message">{errors.password}</span>}
+                </div>
 
-            <div className="signup-form-group">
-              <label htmlFor="confirmPassword" className="signup-form-label">
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-                className={`signup-form-input ${errors.confirmPassword ? 'signup-form-input-error' : ''}`}
-                value={formData.confirmPassword}
-                onChange={handleChange}
-              />
-              {errors.confirmPassword && <span className="signup-error-message">{errors.confirmPassword}</span>}
-            </div>
+                <div className="signup-form-group">
+                  <label htmlFor="confirmPassword" className="signup-form-label">
+                    Confirm Password
+                  </label>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    required
+                    className={`signup-form-input ${errors.confirmPassword ? 'signup-form-input-error' : ''}`}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                  />
+                  {errors.confirmPassword && <span className="signup-error-message">{errors.confirmPassword}</span>}
+                </div>
 
-            <button
-              type="submit"
-              className="signup-submit-button"
-            >
-              Join for free
-            </button>
-            {errors.signup && <span className="signup-error-message">{errors.signup}</span>}
-          </form>
+                <button
+                  type="submit"
+                  className="signup-submit-button"
+                >
+                  Join for free
+                </button>
+                {errors.signup && <span className="signup-error-message">{errors.signup}</span>}
+              </form>
 
-          <div className="signup-footer">
-            <p className="signup-text">
-              Already have an account?{' '}
-              <Link to="/signin" className="signup-link">
-                Sign in
-              </Link>
-            </p>
-          </div>
+              <div className="signup-footer">
+                <p className="signup-text">
+                  Already have an account?{' '}
+                  <Link to="/signin" className="signup-link">
+                    Sign in
+                  </Link>
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

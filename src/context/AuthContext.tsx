@@ -33,6 +33,10 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       setSession(data.session);
       return ok<Session>(data.session);
     }
+    
+    if (data?.user && !data?.session) {
+      return err<Session>(new Error('EMAIL_VERIFICATION_REQUIRED'));
+    }
     return err<Session>(new Error('Sign up successful but no session was created. Please try signing in.'));
   }
 
