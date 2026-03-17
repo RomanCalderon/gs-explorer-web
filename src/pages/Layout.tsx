@@ -1,18 +1,22 @@
-import { useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import Navbar from "../components/Navbar/Navbar";
 
 const Layout = () => {
   const auth = UserAuth()!;
-  const { session } = auth;
-  const navigate = useNavigate();
+  const { session, isAuthLoading } = auth;
 
-  useEffect(() => {
-    if (!session) {
-      navigate('/');
-    }
-  }, [session, navigate]);
+  if (isAuthLoading) {
+    return (
+      <main style={{ marginTop: '70px', padding: '1rem' }}>
+        Checking authentication...
+      </main>
+    );
+  }
+
+  if (!session) {
+    return <Navigate to="/signin" replace />;
+  }
 
   return (
     <>

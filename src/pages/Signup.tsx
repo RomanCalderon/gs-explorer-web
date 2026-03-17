@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
 import './Signup.css'
@@ -21,10 +21,10 @@ const Signup = () => {
 
   const navigate = useNavigate();
   const auth = UserAuth()!;
-  const { signUp } = auth;
+  const { session, isAuthLoading, signUp } = auth;
 
   const validatePasswords = () => {
-    const newErrors = { ...errors }
+    const newErrors = { ...errors, password: '', confirmPassword: '' }
     let isValid = true
 
     if (formData.password.length < 8) {
@@ -42,12 +42,14 @@ const Signup = () => {
   }
 
   const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     if (!validatePasswords()) {
       console.log('Passwords do not match');
       return;
     }
 
-    e.preventDefault();
+    setErrors(prev => ({ ...prev, signup: '' }));
     setLoading(true);
     const { email, password } = formData;
     try {
@@ -87,6 +89,13 @@ const Signup = () => {
         [name]: ''
       }))
     }
+
+    if (errors.signup) {
+      setErrors(prev => ({
+        ...prev,
+        signup: ''
+      }));
+    }
   }
 
   const emailVerificationNotice = (email: string) => {
@@ -109,6 +118,19 @@ const Signup = () => {
         </div>
       </div>
     )
+  }
+
+  if (isAuthLoading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <div className="loading-text">Checking session...</div>
+      </div>
+    )
+  }
+
+  if (session) {
+    return <Navigate to="/" replace />
   }
 
   if (loading) {

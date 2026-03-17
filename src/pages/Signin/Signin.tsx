@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import './Signin.css'
 import BackgroundFog from '../../components/Backgrounds/BackgroundFog'
@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Signin = () => {
   const auth = UserAuth()!;
-  const { signIn } = auth;
+  const { session, isAuthLoading, signIn } = auth;
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -15,23 +15,20 @@ const Signin = () => {
     password: ''
   });
   const [errors, setErrors] = useState({
-    password: '',
     signin: ''
   })
   const [loading, setLoading] = useState(false);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({ signin: '' });
     setLoading(true);
     const { email, password } = formData;
     try {
       const result = await signIn(email, password);
       if (result.isErr()) {
         console.error(result.error);
-        setErrors(prev => ({
-          ...prev,
-          password: result.error.message
-        }));
+        setErrors({ signin: result.error.message });
       }
       if (result.isOk()) {
         navigate('/');
@@ -49,6 +46,22 @@ const Signin = () => {
       ...prev,
       [name]: value
     }));
+    if (errors.signin) {
+      setErrors({ signin: '' });
+    }
+  }
+
+  if (isAuthLoading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <div className="loading-text">Checking session...</div>
+      </div>
+    )
+  }
+
+  if (session) {
+    return <Navigate to="/" replace />
   }
 
   if (loading) {

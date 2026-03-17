@@ -5,6 +5,7 @@ import { Result, err, ok } from '../utils/results';
 
 type AuthContextType = {
   session: Session | null;
+  isAuthLoading: boolean;
   signUp: (email: string, password: string) => Promise<Result<Session, Error>>;
   signIn: (email: string, password: string) => Promise<Result<Session, Error>>;
   signOut: () => Promise<Result<void, Error>>;
@@ -18,11 +19,15 @@ export const UserAuth = () => {
 
 export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
   const signUp = async (email: string, password: string) => {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/signin`,
+      }
     })
 
     if (error) {
@@ -64,10 +69,13 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+    }).finally(() => {
+      setIsAuthLoading(false);
     })
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      setIsAuthLoading(false);
     })
 
     return () => {
@@ -85,7 +93,7 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
   }
 
   return (
-    <AuthContext.Provider value={{ session, signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ session, isAuthLoading, signUp, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   )
