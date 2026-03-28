@@ -23,3 +23,8 @@ test
 *.njsproj
 *.sln
 *.sw?
+
+# Supabase
+supabase/.temp/
+supabase/.branches/
+supabase/seed.sql
