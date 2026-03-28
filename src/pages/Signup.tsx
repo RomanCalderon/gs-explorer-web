@@ -1,5 +1,5 @@
-import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import './Signup.css'
 import BackgroundFog from '../components/Backgrounds/BackgroundFog'
@@ -21,7 +21,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
   const auth = UserAuth()!;
-  const { session, isAuthLoading, signUp } = auth;
+  const { session, isAuthLoading, isPasswordRecovery, signUp } = auth;
 
   const validatePasswords = () => {
     const newErrors = { ...errors, password: '', confirmPassword: '' }
@@ -127,6 +127,10 @@ const Signup = () => {
         <div className="loading-text">Checking session...</div>
       </div>
     )
+  }
+
+  if (session && isPasswordRecovery) {
+    return <Navigate to="/update-password" replace />
   }
 
   if (session) {

@@ -1,13 +1,13 @@
+import { useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 import './Signin.css'
 import BackgroundFog from '../../components/Backgrounds/BackgroundFog'
-import { UserAuth } from '../../context/AuthContext';
-import { useState } from 'react';
+import { UserAuth } from '../../context/AuthContext'
 
 const Signin = () => {
   const auth = UserAuth()!;
-  const { session, isAuthLoading, signIn } = auth;
+  const { session, isAuthLoading, isPasswordRecovery, signIn } = auth;
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -60,6 +60,10 @@ const Signin = () => {
     )
   }
 
+  if (session && isPasswordRecovery) {
+    return <Navigate to="/update-password" replace />
+  }
+
   if (session) {
     return <Navigate to="/" replace />
   }
@@ -110,6 +114,11 @@ const Signin = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
+              <div style={{ textAlign: 'right', marginTop: '0.25rem' }}>
+                <Link to="/forgot-password" className="signin-link" style={{ fontSize: '0.8125rem' }}>
+                  Forgot password?
+                </Link>
+              </div>
             </div>
 
             <button

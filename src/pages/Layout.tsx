@@ -1,10 +1,11 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { UserAuth } from "../context/AuthContext";
+
 import Navbar from "../components/Navbar/Navbar";
+import { UserAuth } from "../context/AuthContext";
 
 const Layout = () => {
   const auth = UserAuth()!;
-  const { session, isAuthLoading } = auth;
+  const { session, isAuthLoading, isPasswordRecovery } = auth;
 
   if (isAuthLoading) {
     return (
@@ -12,6 +13,10 @@ const Layout = () => {
         Checking authentication...
       </main>
     );
+  }
+
+  if (session && isPasswordRecovery) {
+    return <Navigate to="/update-password" replace />;
   }
 
   if (!session) {
